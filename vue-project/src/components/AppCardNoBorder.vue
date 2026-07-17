@@ -15,12 +15,16 @@ const props = defineProps({
     borderRadius: {
         type: String,
         default: '28px'
+    },
+    marginBottom: {
+        type: Boolean,
+        default: false
     }
 });
 </script>
 
 <template>
-    <div class="glass-card" :style="{ width: props.width, height: props.height, padding: props.padding, borderRadius: props.borderRadius }">
+    <div class="glass-card" :style="{ width: props.width, height: props.height, padding: props.padding, borderRadius: props.borderRadius, marginBottom: props.marginBottom ? '24px' : '0' }">
         <slot></slot>
     </div>
 
@@ -45,16 +49,11 @@ const props = defineProps({
     align-items: left;
     overflow: hidden;
     border-radius: v-bind('props.borderRadius');
-    filter: drop-shadow(-8px -10px 46px #0000005f);
-    backdrop-filter: brightness(1.1) 
-        blur(2px)
-        url(#displacementFilter);
+    filter: var(--card-filter);
+    backdrop-filter: var(--card-backdrop-filter);
     color: inherit;
-    background: rgba(255, 255, 255, 0.01);
-    transition: opacity 0.26s ease-out, background 0.s ease;
-
-    box-shadow: inset 0 0 8px 1px rgba(90, 90, 90, 0.1);
+    background: var(--card-bg);
+    transition: opacity 0.26s ease-out, background 0.4s ease;
+    box-shadow: var(--card-box-shadow);
 }
-
-
 </style>

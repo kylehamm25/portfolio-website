@@ -141,6 +141,6 @@ onMounted(() => {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  display: block;
+  display: var(--animated-bg-display, block);
 }
 </style>

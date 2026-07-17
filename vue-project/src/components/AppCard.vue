@@ -50,19 +50,17 @@ const props = defineProps({
     justify-content: center;
     overflow: hidden;
     border-radius: v-bind('props.borderRadius');
-    filter: drop-shadow(-8px -10px 46px #0000005f);
-    backdrop-filter: brightness(1.1) 
-        blur(2px)
-        url(#displacementFilter);
+    filter: var(--card-filter);
+    backdrop-filter: var(--card-backdrop-filter);
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.01);
+    background: var(--card-bg);
     transition: opacity 0.26s ease-out, background 0.4s ease;
 }
 
 .glass-card:hover {
-    background: rgba(108, 99, 255, 0.1);
+    background: var(--card-bg-hover);
 }
 
 .glass-card::before {
@@ -72,9 +70,7 @@ const props = defineProps({
     z-index: 0;
     overflow: hidden;
     border-radius: v-bind('props.borderRadius');
-    -webkit-box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7), 
-                        inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
-    box-shadow: inset 6px 6px 0px -6px rgba(255, 255, 255, 0.2), 
-                inset 0 0 8px 1px rgba(255, 255, 255, 0.4);
+    -webkit-box-shadow: var(--card-before-shadow-webkit);
+    box-shadow: var(--card-before-shadow);
 }
 </style>
