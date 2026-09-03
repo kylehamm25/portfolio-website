@@ -1,36 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
-import ExperienceDetail from '@/views/ExperienceDetail.vue'
-import ProjectDetail from '@/views/ProjectDetail.vue'
 
+// Both routes render the same view: Home.vue is the single tabbed
+// terminal, and it reads the route itself to decide which tab is active.
+// Using one component instance across routes (rather than lazy-loaded
+// per-route components) means switching to /project/:id doesn't remount
+// the terminal or replay its boot animation.
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
-      path: '/experience/:id',
-      name: 'experience-detail',
-      component: ExperienceDetail,
-      props: true,
-    },
-    {
-      path: '/project/:id',
-      name: 'project-detail',
-      component: ProjectDetail,
-      props: true,
-    },
+    { path: '/', name: 'home', component: Home },
+    { path: '/project/:id', name: 'project-detail', component: Home },
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' }
-    }
-    if (savedPosition) {
-      return savedPosition
-    }
+  scrollBehavior() {
     return { top: 0 }
   },
 })
